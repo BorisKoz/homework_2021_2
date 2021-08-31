@@ -5,16 +5,21 @@
  * @param {(string|number)} boardSize размер доски
  * @returns {(string|null)} возвращает шахматную доску NxN
  */
-let chess = (boardSize) => {
+var chess = (boardSize) => {
     if (!Number.isInteger(+boardSize) || boardSize <= 1)
         return null;
     
-    const symbols = {star:'*', space:' '};
+    const symbols = {
+        star: '*',
+        space: ' ',
+    };
     //переменная boardStrings - 2 первые строки доски, их потом просто надо размножить. Сложность тем самым 2n
-    let boardStrings = ['', ''];
+    const boardStrings = ['', ''];
+    
     for (let i = 0; i < boardSize; i++) {
-        boardStrings[0] = `${boardStrings[0]}${symbols[(i%2)?'space':'star']}`;
-        boardStrings[1] = `${boardStrings[1]}${symbols[(i%2)?'star':'space']}`;
+        const isEven = i % 2;
+        boardStrings[0] = `${boardStrings[0]}${symbols[(isEven)?'space':'star']}`;
+        boardStrings[1] = `${boardStrings[1]}${symbols[(isEven)?'star':'space']}`;
     }
     boardStrings = boardStrings.map(item => `${item}\n`);
     
